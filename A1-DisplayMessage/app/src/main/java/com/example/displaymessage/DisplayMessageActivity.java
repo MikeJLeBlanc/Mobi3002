@@ -39,12 +39,18 @@ public class DisplayMessageActivity extends AppCompatActivity {
             case "blue":
                 textView.setBackgroundColor(Color.BLUE);
                 break;
+            case "cyan":
+                textView.setBackgroundColor(Color.CYAN);
+                break;
+            case "yellow":
+                textView.setBackgroundColor(Color.YELLOW);
+                break;
             default: // Color not found...just use dark gray
                 textView.setBackgroundColor(Color.DKGRAY);
         }
 
         // Add to the text
-        //textView.setText(message + "\n\n  AHA!!!!  I have changed the text colour!!!");
+        textView.setText(message + "\n\n  I am the captain now!!!");
 
 
         // Start logging stuff we can find out
@@ -56,11 +62,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Log.v("SimpleUserInterface", " getText =>" + textView.getText());
         Log.v("SimpleUserInterface", " getText.length =>" + textView.getText().length());
 
-//        try {
-//            Thread.sleep(1000);
-//        } catch (java.lang.InterruptedException e) {
-//            Log.v("SimpleUserInterface", "java.lang.InterruptedException: " + e.getMessage());
-//        }
+        try {
+            Thread.sleep(1000);
+        } catch (java.lang.InterruptedException e) {
+            Log.v("SimpleUserInterface", "java.lang.InterruptedException: " + e.getMessage());
+        }
 
 
     }
