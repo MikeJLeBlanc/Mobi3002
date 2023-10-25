@@ -22,7 +22,7 @@ public class Ball {
 
     // Add accelerometer
     // Add ... implements SensorEventListener
-    private double ax, ay, az = 0; // acceration from different axis
+    private double ax, ay, az = 0; // acceleration from different axis
 
     public void setAcc(double ax, double ay, double az){
         this.ax = ax;

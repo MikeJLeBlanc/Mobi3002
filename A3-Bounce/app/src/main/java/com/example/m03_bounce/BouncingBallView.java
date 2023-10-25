@@ -12,6 +12,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Russ on 08/04/2014.
@@ -19,28 +21,36 @@ import java.util.Formatter;
 public class BouncingBallView extends View  {
 
     private ArrayList<Ball> balls = new ArrayList<Ball>(); // list of Balls
+    private ArrayList<Square> squares = new ArrayList<>(); // list of Balls
     private Ball ball_1;  // use this to reference first ball in arraylist
     private Box box;
 
-    // Status message to show Ball's (x,y) position and speed.
-    private StringBuilder statusMsg = new StringBuilder();
-    private Formatter formatter = new Formatter(statusMsg);
     private Paint paint;
 
-    private int string_line = 1;  //
-    private int string_x = 10;
-    private int string_line_size = 40;  // pixels to move down one line
-    private ArrayList<String> debug_dump1 = new ArrayList();
     private String[] debug_dump2 = new String[200];
 
     // For touch inputs - previous touch (x, y)
     private float previousX;
     private float previousY;
+    private Rectangle rect;
+    private int randomColor;
+    private List<Integer> colorList = new ArrayList<>(); //create a color list to add colors and choose from them in our game
+
 
     public BouncingBallView(Context context, AttributeSet attrs) {
         super(context, attrs);;
 
         Log.v("BouncingBallView", "Constructor BouncingBallView");
+
+        //add colors to our arrayList, instead of creating a new array every touch event
+        colorList.add(Color.CYAN);
+        colorList.add(Color.RED);
+        colorList.add(Color.BLUE);
+        colorList.add(Color.BLACK);
+        colorList.add(Color.YELLOW);
+        colorList.add(Color.MAGENTA);
+        colorList.add(Color.DKGRAY);
+        colorList.add(Color.WHITE);
 
         // Init the array
         for (int i = 1; i < 200; i++) {
@@ -48,7 +58,7 @@ public class BouncingBallView extends View  {
         }
 
         // create the box
-        box = new Box(Color.BLACK);  // ARGB
+        box = new Box(Color.GRAY);  // ARGB
 
         //ball_1 = new Ball(Color.GREEN);
         balls.add(new Ball(Color.GREEN));
@@ -58,6 +68,8 @@ public class BouncingBallView extends View  {
         //ball_2 = new Ball(Color.CYAN);
         balls.add(new Ball(Color.CYAN));
         Log.w("BouncingBallLog", "Just added another bouncing ball");
+
+        rect = new Rectangle(colorList.get(randomColor));
 
         // Set up status message on paint object
         paint = new Paint();
@@ -78,63 +90,38 @@ public class BouncingBallView extends View  {
     @Override
     protected void onDraw(Canvas canvas) {
 
-
         Log.v("BouncingBallView", "onDraw");
-
 
         // Draw the components
         box.draw(canvas);
         //canvas.drawARGB(0,25,25,25);
         //canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
+        rect.draw(canvas);
+        rect.moveWithCollisionDetection(box);
+
         for (Ball b : balls) {
+            if (rect.isCircleRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
+                Log.v("BouncingBallView", "circle collision with rectangle");
+                b.speedX = -b.speedX;
+                b.speedY = -b.speedY;
+
+            }
             b.draw(canvas);  //draw each ball in the list
             b.moveWithCollisionDetection(box);  // Update the position of the ball
         }
+        for (Square s : squares) {
+            if (rect.isSquareRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
+                Log.v("BouncingBallView", "square collision with rectangle");
+                s.speedX = -s.speedX;
+                s.speedY = -s.speedY;
 
-        // Draw the status message to the screen
-//        statusMsg.delete(0, statusMsg.length());   // Empty buffer
-//        formatter.format("Ball@(%3.0f,%3.0f),Speed=(%2.0f,%2.0f)", ball_1.x, ball_1.y,
-//                ball_1.speedX, ball_1.speedY);
-//        canvas.drawText(statusMsg.toString(), 10, 30, paint);
-
-
-        // inc-rotate string_line
-        if (string_line * string_line_size > box.yMax) {
-            string_line = 1;  // first line is status
-            debug_dump1.clear();
-        } else {
-            string_line++;
+            }
+            s.draw(canvas);  //draw each square in the list
+            s.moveWithCollisionDetection(box);  // Update the position of the square
         }
 
-        // inc-rotate string_x
-        if (string_x > box.xMax) {
-            string_x = 10;  // first line is status
-        } else {
-            string_x++;
-        }
 
-        // Array of String (uses more mem, but changes less)
-//        debug_dump2[string_line] = "Ball(" + balls.size() + " " + ball_1.x + " ," + ball_1.y + ")";
-//        for (int i = 1; i < debug_dump2.length; i++) {
-//            canvas.drawText(debug_dump2[i], string_x, i * string_line_size, paint);
-//        }
-
-        // ArrayList (more new's, allocation of RAM)
-//        String newString = new String("AL-Ball(" + string_line + "  " + ball_1.x + " ," + ball_1.y + ") ");
-//        debug_dump1.add(newString);
-//        for (int i = 1; i < debug_dump1.size(); i++) {
-//            canvas.drawText(debug_dump1.get(i), 700, i * string_line_size, paint);
-//        }
-
-
-        // Delay on UI thread causes big problems!
-        // Simulates doing busy work or waits on UI (DB connections, Network I/O, ....)
-        //  I/Choreographer? Skipped 64 frames!  The application may be doing too much work on its main thread.
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//        }
 
         // Check what happens if you draw the box last
         //box.draw(canvas);
@@ -160,6 +147,8 @@ public class BouncingBallView extends View  {
         float currentY = event.getY();
         float deltaX, deltaY;
         float scalingFactor = 5.0f / ((box.xMax > box.yMax) ? box.yMax : box.xMax);
+        randomColor = new Random().nextInt(colorList.size()); // new random colour when called
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 // Modify rotational angles according to movement
@@ -169,17 +158,12 @@ public class BouncingBallView extends View  {
                 ball_1.speedY += deltaY * scalingFactor;
                 //Log.w("BouncingBallLog", " Xspeed=" + ball_1.speedX + " Yspeed=" + ball_1.speedY);
                 Log.w("BouncingBallLog", "x,y= " + previousX + " ," + previousY + "  Xdiff=" + deltaX + " Ydiff=" + deltaY);
-                balls.add(new Ball(Color.BLUE, previousX, previousY, deltaX, deltaY));  // add ball at every touch event
+                balls.add(new Ball(colorList.get(randomColor), previousX, previousY, deltaX, deltaY));  // add ball at every touch event
 
                 // A way to clear list when too many balls
                 if (balls.size() > 20) {
-                    // leave first ball, remove the rest
-                    Log.v("BouncingBallLog", "too many balls, clear back to 1");
-                    balls.clear();
-                    balls.add(new Ball(Color.RED));
-                    ball_1 = balls.get(0);  // points ball_1 to the first (zero-ith) element of list
+                    resetList(balls);
                 }
-
         }
         // Save current x, y
         previousX = currentX;
@@ -191,4 +175,34 @@ public class BouncingBallView extends View  {
         return true;  // Event handled
     }
 
+    public void resetList(List list) {
+        // leave first ball, remove the rest
+        Log.v("BouncingBallLog", "too many balls, clear back to 1");
+        list.clear();
+
+    }
+
+
+    Random rand = new Random();
+    // called when button is pressed
+    public void RussButtonPressed() {
+        Log.d("BouncingBallView  BUTTON", "User tapped the  button ... VIEW");
+        randomColor = new Random().nextInt(colorList.size()); // new random colour when called
+
+        //get half of the width and height as we are working with a circle
+        int viewWidth = 300;   // this.getMeasuredWidth();
+        int viewHeight = 300;  // this.getMeasuredHeight();
+
+        // make random x,y, velocity
+        int x = rand.nextInt(viewWidth);
+        int y = rand.nextInt(viewHeight);
+        int dx = rand.nextInt(20);
+        int dy = rand.nextInt(20);
+
+        squares.add(new Square(colorList.get(randomColor), x, y, dx, dy));  // add ball at every touch event
+
+        if (squares.size() > 20) {
+            resetList(squares);
+        }
+    }
 }
