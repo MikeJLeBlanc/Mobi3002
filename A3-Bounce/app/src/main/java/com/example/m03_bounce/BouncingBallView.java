@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
 import java.util.Random;
 
@@ -19,8 +19,9 @@ import java.util.Random;
  * Created by Russ on 08/04/2014.
  */
 public class BouncingBallView extends View  {
-
-    private ArrayList<Ball> balls = new ArrayList<Ball>(); // list of Balls
+    private int collisionCount = 0;
+    private TextView collisionCountTextView = findViewById(R.id.scoreNumb);
+    private ArrayList<Ball> balls = new ArrayList<>(); // list of Balls
     private ArrayList<Square> squares = new ArrayList<>(); // list of Balls
     private Ball ball_1;  // use this to reference first ball in arraylist
     private Box box;
@@ -35,7 +36,6 @@ public class BouncingBallView extends View  {
     private Rectangle rect;
     private int randomColor;
     private List<Integer> colorList = new ArrayList<>(); //create a color list to add colors and choose from them in our game
-
 
     public BouncingBallView(Context context, AttributeSet attrs) {
         super(context, attrs);;
@@ -100,28 +100,8 @@ public class BouncingBallView extends View  {
         rect.draw(canvas);
         rect.moveWithCollisionDetection(box);
 
-        for (Ball b : balls) {
-            if (rect.isCircleRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
-                Log.v("BouncingBallView", "circle collision with rectangle");
-                b.speedX = -b.speedX;
-                b.speedY = -b.speedY;
-
-            }
-            b.draw(canvas);  //draw each ball in the list
-            b.moveWithCollisionDetection(box);  // Update the position of the ball
-        }
-        for (Square s : squares) {
-            if (rect.isSquareRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
-                Log.v("BouncingBallView", "square collision with rectangle");
-                s.speedX = -s.speedX;
-                s.speedY = -s.speedY;
-
-            }
-            s.draw(canvas);  //draw each square in the list
-            s.moveWithCollisionDetection(box);  // Update the position of the square
-        }
-
-
+        circleCollisionDetection(canvas);
+        squareCollisionDetection(canvas);
 
         // Check what happens if you draw the box last
         //box.draw(canvas);
@@ -182,10 +162,9 @@ public class BouncingBallView extends View  {
 
     }
 
-
     Random rand = new Random();
     // called when button is pressed
-    public void RussButtonPressed() {
+    public void notRussButtonPressed() {
         Log.d("BouncingBallView  BUTTON", "User tapped the  button ... VIEW");
         randomColor = new Random().nextInt(colorList.size()); // new random colour when called
 
@@ -204,5 +183,40 @@ public class BouncingBallView extends View  {
         if (squares.size() > 20) {
             resetList(squares);
         }
+    }
+
+    public void circleCollisionDetection(Canvas canvas) {
+        for (Ball b : balls) {
+            if (rect.isCircleRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
+                Log.v("BouncingBallView", "circle collision with rectangle");
+                b.speedX = -b.speedX;
+                b.speedY = -b.speedY;
+                rect.speedX = -rect.speedX;
+                rect.speedY = -rect.speedY;
+                updateCollisionCountOnScreen(collisionCount);
+                Log.v("BouncingBallView", "Score is: " + collisionCount);
+            }
+            b.draw(canvas);  //draw each ball in the list
+            b.moveWithCollisionDetection(box);  // Update the position of the ball
+        }
+    }
+    public void squareCollisionDetection(Canvas canvas) {
+        for (Square s : squares) {
+            if (rect.isSquareRectangleCollision(previousX, previousY, 50, rect.x, rect.y, rect.width, rect.height)) {
+                Log.v("BouncingBallView", "square collision with rectangle");
+                s.speedX = -s.speedX;
+                s.speedY = -s.speedY;
+                rect.speedX = -rect.speedX;
+                rect.speedY = -rect.speedY;
+                updateCollisionCountOnScreen(collisionCount);
+                Log.v("BouncingBallView", "Score is: " + collisionCount);
+            }
+            s.draw(canvas);  //draw each square in the list
+            s.moveWithCollisionDetection(box);  // Update the position of the square
+        }
+    }
+    private void updateCollisionCountOnScreen(int collisionCount) {
+        this.collisionCount = collisionCount;
+        collisionCountTextView.setText(collisionCount);
     }
 }

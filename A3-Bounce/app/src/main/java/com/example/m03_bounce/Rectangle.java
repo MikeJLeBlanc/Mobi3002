@@ -84,6 +84,6 @@ public class Rectangle {
         boolean xOverlap = squareX + squareSize >= rectX && squareX <= rectX + rectWidth;
         boolean yOverlap = squareY + squareSize >= rectY && squareY <= rectY + rectHeight;
 
-        return xOverlap && yOverlap;
+        return xOverlap || yOverlap;
     }
 }

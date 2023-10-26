@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -18,15 +19,34 @@
         custom:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_russ"
+        android:id="@+id/notRussButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onRussButtonClick"
-        android:text="Russ Button"
+        android:onClick="notRussButtonClick"
+        android:text="Spawn a Square!"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.1"
         custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:layout_constraintVertical_bias="0.057" />
+
+    <EditText
+        android:id="@+id/scoreNumb"
+        android:layout_width="157dp"
+        android:layout_height="54dp"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="number"
+        android:text=""
+        android:textAlignment="center"
+        android:textFontWeight="10"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.78"
+        custom:layout_constraintStart_toEndOf="@+id/notRussButton"
         custom:layout_constraintTop_toTopOf="parent"
         custom:layout_constraintVertical_bias="0.057" />
 
