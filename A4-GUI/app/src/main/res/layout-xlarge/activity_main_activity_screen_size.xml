@@ -1,9 +1,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivityScreenSize">
+
+    <ImageButton
+        android:id="@+id/subBtn"
+        android:layout_width="240dp"
+        android:layout_height="204dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="610dp"
+        android:layout_marginTop="700dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="820dp"
+        app:srcCompat="@drawable/minus_ic_launcher" />
+
+    <EditText
+        android:id="@+id/numView2"
+        android:layout_width="450dp"
+        android:layout_height="132dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="474dp"
+        android:layout_marginTop="302dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="1257dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/answerView"
+        android:layout_width="466dp"
+        android:layout_height="140dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="460dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="1081dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView android:text="xlarge Portait Screen"
         android:layout_width="wrap_content"
@@ -20,39 +65,85 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xlarge screen"
-        android:id="@+id/button5"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button6"
-        android:layout_marginBottom="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_below="@+id/button5"
-        android:layout_marginTop="149dp"
-        android:layout_alignRight="@+id/button5"
-        android:layout_alignEnd="@+id/button5"
-        android:text="his is plain text" />
+        android:id="@+id/numView1"
+        android:layout_width="460dp"
+        android:layout_height="126dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="464dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="1427dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_below="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_russimage" />
+        android:id="@+id/imageView2"
+        android:layout_width="244dp"
+        android:layout_height="224dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="198dp"
+        android:layout_marginTop="446dp"
+        android:layout_marginEnd="566dp"
+        android:layout_marginBottom="1086dp"
+        app:srcCompat="@drawable/equals_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="240dp"
+        android:layout_height="204dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="698dp"
+        android:layout_marginEnd="626dp"
+        android:layout_marginBottom="822dp"
+        app:srcCompat="@drawable/plus_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/multBtn"
+        android:layout_width="240dp"
+        android:layout_height="204dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="1104dp"
+        android:layout_marginEnd="588dp"
+        android:layout_marginBottom="416dp"
+        app:srcCompat="@drawable/mult_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/divBtn"
+        android:layout_width="240dp"
+        android:layout_height="204dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="610dp"
+        android:layout_marginTop="1114dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="406dp"
+        app:srcCompat="@drawable/divide_ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="840dp"
+        android:layout_height="328dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="1350dp"
+        app:srcCompat="@drawable/mysvg" />
 
 </RelativeLayout>

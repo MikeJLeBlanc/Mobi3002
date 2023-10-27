@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,115 @@ public class MainActivityScreenSize extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_screen_size);
+
+        ImageButton addButton = findViewById(R.id.addBtn);
+        ImageButton subButton = findViewById(R.id.subBtn);
+        ImageButton multButton = findViewById(R.id.multBtn);
+        ImageButton divButton = findViewById(R.id.divBtn);
+
+        addButton.setOnClickListener(v -> {
+            Log.d("Calculator app", "User tapped the Add button");
+            Double d1 = 0.0;
+            Double d2 = 0.0;
+            Double answer = 0.0;
+
+            EditText num1Text = findViewById(R.id.numView1);
+            EditText num2Text = findViewById(R.id.numView2);
+            EditText answerText = findViewById(R.id.answerView);
+                        try {
+                d1 = Double.parseDouble(num1Text.getText().toString());
+                d2 = Double.parseDouble(num2Text.getText().toString());
+                answer = d1 + d2;
+            }
+            catch (Exception e) {
+            }
+
+            // Set the Answer into the the answer field
+            answerText.setText(answer.toString());
+
+            // log what we are doing
+            Log.w("Calculator add button", "Add Selected with => " + d1 + " + " + d2 + " = " + answer);
+        });
+
+        subButton.setOnClickListener(v -> {
+            Log.d("Calculator app", "User tapped the Add button");
+            Double d1 = 0.0;
+            Double d2 = 0.0;
+            Double answer = 0.0;
+
+            EditText num1Text = findViewById(R.id.numView1);
+            EditText num2Text = findViewById(R.id.numView2);
+            EditText answerText = findViewById(R.id.answerView);
+            try {
+                d1 = Double.parseDouble(num1Text.getText().toString());
+                d2 = Double.parseDouble(num2Text.getText().toString());
+                answer = d1 - d2;
+            }
+            catch (Exception e) {
+            }
+
+            // Set the Answer into the the answer field
+            answerText.setText(answer.toString());
+
+            // log what we are doing
+            Log.w("Calculator add button", "Add Selected with => " + d1 + " - " + d2 + " = " + answer);
+        });
+
+        multButton.setOnClickListener(v -> {
+            Log.d("Calculator app", "User tapped the Subtract button");
+
+            Double d1 = 0.0;
+            Double d2 = 0.0;
+            Double answer = 0.0;
+
+            EditText textN1 = findViewById(R.id.numView1);
+            EditText textN2 = findViewById(R.id.numView2);
+            // we actually don't need to get ans from screen
+            EditText textANS = findViewById(R.id.answerView);
+
+            try {
+                d1 = Double.parseDouble(textN1.getText().toString());
+                d2 = Double.parseDouble(textN2.getText().toString());
+                answer = d1 * d2;
+            }
+            catch (Exception e) {
+                Log.w("Calculator mult button", "Subtract Selected with no inputs ... " + answer);
+            }
+
+            // Set the Answer into the the answer field
+            textANS.setText(answer.toString());
+
+            // log what we are doing
+            Log.w("Calculator sub button", "Subtract Selected with => " + d1 + " * " + d2 + " = " + answer);
+        });
+
+        divButton.setOnClickListener(v -> {
+            Log.d("Calculator app", "User tapped the Subtract button");
+
+            Double d1 = 0.0;
+            Double d2 = 0.0;
+            Double answer = 0.0;
+
+            EditText textN1 = findViewById(R.id.numView1);
+            EditText textN2 = findViewById(R.id.numView2);
+            // we actually don't need to get ans from screen
+            EditText textANS = findViewById(R.id.answerView);
+
+            try {
+                d1 = Double.parseDouble(textN1.getText().toString());
+                d2 = Double.parseDouble(textN2.getText().toString());
+                answer = d1 / d2;
+            }
+            catch (Exception e) {
+                Log.w("Calculator divide button", "Subtract Selected with no inputs ... " + answer);
+            }
+
+            // Set the Answer into the the answer field
+            textANS.setText(answer.toString());
+
+            // log what we are doing
+            Log.w("Calculator sub button", "Subtract Selected with => " + d1 + " / " + d2 + " = " + answer);
+        });
     }
 
     @Override
@@ -45,12 +157,13 @@ public class MainActivityScreenSize extends AppCompatActivity {
 
     public void getMyVersion(View view) {
 
+
         // Get version data
         String versionNum = Integer.toString(Build.VERSION.SDK_INT);
         Boolean afterKitKat = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
 
         // Put it on the screen
-        TextView t = (TextView) findViewById(R.id.textView);
+        TextView t = findViewById(R.id.textView);
         t.setText(" Version Number is " + versionNum);
         t.append("\n afterKitKat = " + afterKitKat.toString());
         t.append("\n Build.VERSION.RELEASE = " + Build.VERSION.RELEASE);

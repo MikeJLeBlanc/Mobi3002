@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 answer = d1 + d2;
             }
             catch (Exception e) {
-                Log.w("Calculator app", "Add Selected with no inputs ... " + answer);
             }
 
             // Set the Answer into the the answer field

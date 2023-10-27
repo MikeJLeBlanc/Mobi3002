@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,29 +21,127 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button5"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button6"
-        android:layout_marginBottom="75dp"
+    <EditText
+        android:id="@+id/numView1"
+        android:layout_width="274dp"
+        android:layout_height="82dp"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="563dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/numView2"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/numView1"
+        android:layout_alignTop="@+id/numView1"
+        android:layout_alignEnd="@+id/numView1"
+        android:layout_alignBottom="@+id/numView1"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="-94dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/answerView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_below="@+id/numView2"
+        android:layout_alignStart="@+id/numView2"
+        android:layout_alignEnd="@+id/numView2"
+        android:layout_alignBottom="@+id/numView2"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-125dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <ImageButton
+        android:id="@+id/equalsBtn"
+        android:layout_width="119dp"
+        android:layout_height="89dp"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_marginStart="-281dp"
+        android:layout_marginTop="309dp"
+        android:layout_marginEnd="308dp"
+        android:layout_marginBottom="-349dp"
+        android:src="@drawable/equals_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="115dp"
+        android:layout_height="110dp"
+        android:layout_alignStart="@+id/equalsBtn"
+        android:layout_alignTop="@+id/equalsBtn"
+        android:layout_alignEnd="@+id/equalsBtn"
+        android:layout_alignBottom="@+id/equalsBtn"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-146dp"
+        android:src="@drawable/plus_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/subBtn"
+        android:layout_width="99dp"
+        android:layout_height="107dp"
+        android:layout_alignStart="@+id/addBtn"
+        android:layout_alignTop="@+id/addBtn"
+        android:layout_alignEnd="@+id/addBtn"
+        android:layout_alignBottom="@+id/addBtn"
+        android:layout_marginStart="258dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="-241dp"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/minus_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/multBtn"
+        android:layout_width="114dp"
+        android:layout_height="103dp"
+        android:layout_alignStart="@+id/addBtn"
+        android:layout_alignTop="@+id/addBtn"
+        android:layout_alignBottom="@+id/addBtn"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="-134dp"
+        android:src="@drawable/mult_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/divBtn"
+        android:layout_width="99dp"
+        android:layout_height="102dp"
+        android:layout_alignStart="@+id/multBtn"
+        android:layout_alignTop="@+id/multBtn"
+        android:layout_alignEnd="@+id/multBtn"
+        android:layout_alignBottom="@+id/multBtn"
+        android:layout_marginStart="257dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="-242dp"
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/divide_ic_launcher" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_below="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_russimage" />
+        android:id="@+id/imageView6"
+        android:layout_width="438dp"
+        android:layout_height="158dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/mysvg" />
 
 </RelativeLayout>

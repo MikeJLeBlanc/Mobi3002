@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,37 +21,100 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button5"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button6"
-        android:layout_marginBottom="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/numView1"
+        android:layout_width="293dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/button"
-        android:layout_toRightOf="@+id/textView"
-        android:text="xlarge-land" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="54dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textSize="60sp" />
+
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="168dp"
+        android:layout_height="154dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="422dp"
+        android:layout_marginBottom="368dp"
+        android:src="@drawable/plus_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/divBtn"
+        android:layout_width="106dp"
+        android:layout_height="96dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="849dp"
+        android:layout_marginBottom="245dp"
+        android:src="@drawable/divide_ic_launcher" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_below="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_russimage" />
+        android:id="@+id/imageView3"
+        android:layout_width="524dp"
+        android:layout_height="232dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="-6dp"
+        app:srcCompat="@drawable/mysvg" />
+
+    <EditText
+        android:id="@+id/numView2"
+        android:layout_width="325dp"
+        android:layout_height="101dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="615dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/answerView"
+        android:layout_width="327dp"
+        android:layout_height="95dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="378dp"
+        android:layout_marginEnd="633dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <ImageButton
+        android:id="@+id/subBtn"
+        android:layout_width="150dp"
+        android:layout_height="107dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="627dp"
+        android:layout_marginBottom="398dp"
+        android:src="@drawable/minus_ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/multBtn"
+        android:layout_width="178dp"
+        android:layout_height="107dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="577dp"
+        android:layout_marginEnd="221dp"
+        android:layout_marginBottom="258dp"
+        android:src="@drawable/mult_ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="135dp"
+        android:layout_height="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="423dp"
+        android:layout_marginEnd="460dp"
+        android:src="@drawable/equals_ic_launcher" />
 
 </RelativeLayout>
