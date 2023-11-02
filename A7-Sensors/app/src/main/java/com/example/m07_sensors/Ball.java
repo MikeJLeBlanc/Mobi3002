@@ -3,6 +3,8 @@ package com.example.m07_sensors;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
+import android.widget.EditText;
 
 import java.util.Random;
 
@@ -11,7 +13,6 @@ import java.util.Random;
  * Created by Russ on 08/04/2014.
  */
 public class Ball {
-
     double radius = 50;      // Ball's radius
     double x;                // Ball's center (x,y)
     double y;
@@ -60,6 +61,7 @@ public class Ball {
     }
 
     public void moveWithCollisionDetection(Box box) {
+
         // Get new (x,y) position
         x = (x + speedX);
         y = (y + speedY);
@@ -83,6 +85,16 @@ public class Ball {
             speedY = -speedY;
             y = box.yMin + radius;
         }
+
+    }
+    boolean checkCollision(Ball otherBall) {
+        // difference between x and y's
+        double distanceX = x - otherBall.x;
+        double distanceY = y - otherBall.y;
+        double distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+        double radiiSum = this.radius + otherBall.radius;
+
+        return distance <= radiiSum;
     }
 
     public void draw(Canvas canvas) {

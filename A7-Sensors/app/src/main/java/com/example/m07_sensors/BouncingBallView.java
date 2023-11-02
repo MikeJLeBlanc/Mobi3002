@@ -11,9 +11,14 @@ import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+
+import androidx.appcompat.app.WindowDecorActionBar;
 
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Russ on 08/04/2014.
@@ -29,6 +34,7 @@ public class BouncingBallView extends View implements SensorEventListener {
     private Formatter formatter = new Formatter(statusMsg);
     private Paint paint;
 
+    public static int score = 0;
     private int string_line = 1;  //
     private int string_x = 10;
     private int string_line_size = 40;  // pixels to move down one line
@@ -38,11 +44,10 @@ public class BouncingBallView extends View implements SensorEventListener {
     // For touch inputs - previous touch (x, y)
     private float previousX;
     private float previousY;
-
+    boolean canCreateBall = false;
     double ax = 0;   // Store here for logging to screen
     double ay = 0;   //
     double az = 0;   //
-
 
     // Constructor
     public BouncingBallView(Context context) {
@@ -54,16 +59,14 @@ public class BouncingBallView extends View implements SensorEventListener {
         }
 
         // create the box
-        box = new Box(Color.BLACK);  // ARGB
+        box = new Box(Color.WHITE);  // ARGB
 
         //ball_1 = new Ball(Color.GREEN);
         balls.add(new Ball(Color.GREEN));
         ball_1 = balls.get(0);  // points ball_1 to the first; (zero-ith) element of list
         Log.w("BouncingBallLog", "Just added a bouncing ball");
 
-        //ball_2 = new Ball(Color.CYAN);
-        balls.add(new Ball(Color.CYAN));
-        Log.w("BouncingBallLog", "Just added another bouncing ball");
+        balls.add(new Ball(Color.YELLOW));
 
         // Set up status message on paint object
         paint = new Paint();
@@ -92,13 +95,27 @@ public class BouncingBallView extends View implements SensorEventListener {
             b.draw(canvas);  //draw each ball in the list
             b.moveWithCollisionDetection(box);  // Update the position of the ball
         }
+        for (Ball b : balls) {
+            for (int i = 1; i < balls.size(); i++) { //collision detection WORKS PROGRESS!
+                if (b != balls.get(i)) {
+                    if (b.checkCollision(balls.get(i))) {
+                        Log.v("Bouncing balls", "Contact!");
+                        balls.get(i).speedX = -balls.get(i).speedX + 0.5;
+                        balls.get(i).speedY = -balls.get(i).speedY + 0.5;
+                        canCreateBall = true;
+                        b.speedX = -b.speedX + 0.5;
+                        b.speedY = -b.speedY + 0.5;
+                    }
+                }
+            }
+        }
+
 
         // Draw the status message to the screen
 //        statusMsg.delete(0, statusMsg.length());   // Empty buffer
 //        formatter.format("Ball@(%3.0f,%3.0f),Speed=(%2.0f,%2.0f)", ball_1.x, ball_1.y,
 //                ball_1.speedX, ball_1.speedY);
 //        canvas.drawText(statusMsg.toString(), 10, 30, paint);
-
 
         // inc-rotate string_line
         if (string_line * string_line_size > box.yMax) {
@@ -144,6 +161,7 @@ public class BouncingBallView extends View implements SensorEventListener {
         // Check what happens if you don't call invalidate (redraw only when stopped-started)
         // Force a re-draw
         this.invalidate();
+
     }
 
     // Called back when the view is first created or its size changes.
@@ -183,6 +201,11 @@ public class BouncingBallView extends View implements SensorEventListener {
                     ball_1 = balls.get(0);  // points ball_1 to the first (zero-ith) element of list
                 }
 
+                if (canCreateBall) {
+                    balls.add(new Ball(Color.CYAN, 300, 300, 15, 20));
+                    canCreateBall = false;
+                }
+                break;
         }
         // Save current x, y
         previousX = currentX;
@@ -219,3 +242,4 @@ public class BouncingBallView extends View implements SensorEventListener {
         Log.v("onAccuracyChanged", "event=" + sensor.toString());
     }
 }
+

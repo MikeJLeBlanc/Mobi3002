@@ -8,6 +8,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -18,18 +20,19 @@ import java.util.List;
  * other than to support old Android versions.
  */
 public class MainActivity extends Activity {
-
     private View bouncingBallView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        bouncingBallView = new BouncingBallView(this);
+
         //setContentView(R.layout.activity_main_delete);
 
         // Add Bouncing Ball
         // http://www3.ntu.edu.sg/home/ehchua/programming/android/Android_2D.html
-        bouncingBallView = new BouncingBallView(this);
+
         setContentView(bouncingBallView);
         Log.v("SENSORS", "onCreate bouncingBallView=" + bouncingBallView.toString());
 
