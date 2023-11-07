@@ -28,7 +28,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Log.w("Message-INTENT", "onCreate: " + message);
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
+        RelativeLayout layout = findViewById(R.id.content);
         layout.addView(textView);
     }
 

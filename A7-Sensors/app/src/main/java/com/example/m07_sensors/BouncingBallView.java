@@ -94,8 +94,7 @@ public class BouncingBallView extends View implements SensorEventListener {
         for (Ball b : balls) {
             b.draw(canvas);  //draw each ball in the list
             b.moveWithCollisionDetection(box);  // Update the position of the ball
-        }
-        for (Ball b : balls) {
+
             for (int i = 1; i < balls.size(); i++) { //collision detection WORKS PROGRESS!
                 if (b != balls.get(i)) {
                     if (b.checkCollision(balls.get(i))) {

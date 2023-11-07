@@ -6,4 +6,5 @@
     <string name="button_web_intent">Send URL Intent to Browser</string>
     <string name="button_get_photo_intent">Get Photo</string>
     <string name="title_activity_display_message">My Message</string>
+    <string name="imageView" />
 </resources>

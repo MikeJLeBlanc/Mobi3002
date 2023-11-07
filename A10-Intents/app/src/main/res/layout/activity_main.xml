@@ -6,71 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <EditText
-        android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:inputType="text"
-        android:text="http://www.nscc.ca"
+    <ImageButton
+        android:id="@+id/MTG"
+        android:layout_width="415dp"
+        android:layout_height="152dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="124dp" />
+        app:srcCompat="@drawable/demon_mask_deck_box" />
 
-    <Button
-        android:id="@+id/button"
+    <ImageButton
+        android:id="@+id/steam"
+        android:layout_width="416dp"
+        android:layout_height="194dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MTG"
+        app:srcCompat="@drawable/steam" />
+
+    <ImageButton
+        android:id="@+id/WoW"
+        android:layout_width="408dp"
+        android:layout_height="172dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/steam"
+        app:srcCompat="@drawable/warcraftiii" />
+
+    <ImageButton
+        android:id="@+id/youTube"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_message"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="sendMessage1"
-        android:text="@string/button_send"
-        app:layout_constraintTop_toBottomOf="@+id/edit_message"
-        tools:layout_editor_absoluteX="119dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:onClick="sendMessage2"
-        android:text="@string/button_text_intent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:layout_editor_absoluteX="62dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:onClick="sendMessage3"
-        android:text="@string/button_web_intent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        tools:layout_editor_absoluteX="70dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="sendMessage4"
-        android:text="@string/button_get_photo_intent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:layout_editor_absoluteX="145dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
-
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WoW"
+        app:srcCompat="@drawable/youtube_512x512" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
