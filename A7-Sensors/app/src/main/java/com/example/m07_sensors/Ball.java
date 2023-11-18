@@ -3,14 +3,13 @@ package com.example.m07_sensors;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
-import android.widget.EditText;
 
 import java.util.Random;
 
 
 /**
  * Created by Russ on 08/04/2014.
+ * Edited by Mike on 11/12/23.
  */
 public class Ball {
     double radius = 50;      // Ball's radius
@@ -87,7 +86,13 @@ public class Ball {
         }
 
     }
-    boolean checkCollision(Ball otherBall) {
+
+    /**
+     * Created by Mike LeBlanc 11/17/23.
+     * @param otherBall Refers to a ball that may trigger a collision
+     * @return Returns True if the distance between the 2 circles is less than the sum of the radii.
+     */
+    boolean isCollide(Ball otherBall) {
         // difference between x and y's
         double distanceX = x - otherBall.x;
         double distanceY = y - otherBall.y;
